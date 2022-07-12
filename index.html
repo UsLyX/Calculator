@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Open+Sans:wght@300&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>Сalculator</title>
+</head>
+<body>
+    <section class="calculator">
+
+        <div class="text_container">
+            <div class="text_container_last_operation" id="last"></div>
+            <div class="text_container_current_operation" id="current"></div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="container">
+            <button class="button arefmetic_operation" onclick="clear()">C</button>
+            <button class="button arefmetic_operation" onclick="clearAll()">CE</button>
+            <button class="button_1 button" onclick="back()">&lt;</button>
+            <button class="button arefmetic_operation" onclick="insert('+')">+</button>
+            <button class="button" onclick="insert('1')">1</button>
+            <button class="button" onclick="insert('2')">2</button>
+            <button class="button" onclick="insert('3')">3</button>
+            <button class="button arefmetic_operation" onclick="insert('/')">/</button>
+            <button class="button" onclick="insert('4')">4</button>
+            <button class="button" onclick="insert('5')">5</button>
+            <button class="button" onclick="insert('6')">6</button>
+            <button class="button arefmetic_operation" onclick="insert('*')">*</button>
+            <button class="button" onclick="insert('7')">7</button>
+            <button class="button" onclick="insert('8')">8</button>
+            <button class="button" onclick="insert('9')">9</button>
+            <button class="button arefmetic_operation" onclick="insert('-')">-</button>
+            <button class="button_2 button arefmetic_operation" onclick="insert('^2')">X<sup>2</sup></button>
+            <button class="button" onclick="insert('0')">0</button>
+            <button class="button" onclick="insert('.')">.</button>
+            <button class="button_21 button arefmetic_operation" onclick="calc()">=</button>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
