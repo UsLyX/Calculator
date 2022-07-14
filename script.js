@@ -6,11 +6,16 @@ var i = 0;
 
 function insert(num) {
     current.innerHTML += num;
+    if(current.innerHTML[current.innerHTML.length - 2] === '/' || current.innerHTML[current.innerHTML.length - 2] === '*' ||
+    current.innerHTML[current.innerHTML.length - 2] === '-' || current.innerHTML[current.innerHTML.length - 2] === '+'){
+        if(current.innerHTML[current.innerHTML.length - 1] === '.'){
+            current.innerHTML = 'Ошибка';
+        }
+    }
 }  
 function error(num){
     while(i <= 1){
         current.innerHTML[i] += num;
-        console.log(current.innerHTML[0]);
         i++;
         if (current.innerHTML[0] == num){
             continue;
@@ -21,9 +26,8 @@ function error(num){
     }
 }
 function clear_error(num){
-    var r = current.innerHTML;
     if(current.innerHTML == 'Ошибка' + num){
-        current.innerHTML = r.replace('Ошибка' + num, num);
+        current.innerHTML = current.innerHTML.replace('Ошибка' + num, num);
     }
 }
 
@@ -37,8 +41,10 @@ function clearAll() {
 }   
 
 function back() {
-    var number = current.innerHTML;
-    current.innerHTML = number.substring('0', current.innerHTML.length - 1);
+    if(current.innerHTML === 'Ошибка'){
+        current.innerHTML = '';
+    }
+    current.innerHTML = current.innerHTML.substring('0', current.innerHTML.length - 1);
 }
 
 function calc() {
@@ -49,15 +55,20 @@ function calc() {
     last.innerHTML = number + "=" + current.innerHTML;
 }
 function arefmetic_operation1(arefmetic_operation) {
-    var r = current.innerHTML;
-    if(current.innerHTML.length === arefmetic_operation){
-        current.innerHTML = r.replace(current.innerHTML.length, arefmetic_operation);
-   }
-}    
-var oper = arefmetic_operation;
-function zamena(arefmetic_operation) {
-    var p = current.innerHTML.length - 1;
-    if(current.innerHTML.length - 1 == oper){
-        current.innerHTML.substring(p, oper);
+    current.innerHTML += arefmetic_operation;
+    if(current.innerHTML[current.innerHTML.length - 2] === '+' || current.innerHTML[current.innerHTML.length - 2] === '-' ||
+    current.innerHTML[current.innerHTML.length - 2] === '*' || current.innerHTML[current.innerHTML.length - 2] === '/')
+    {
+        current.innerHTML = current.innerHTML.replace(current.innerHTML[current.innerHTML.length - 2], arefmetic_operation);
+        current.innerHTML = current.innerHTML.substring('0', current.innerHTML.length - 1);
     }
+    if(current.innerHTML === arefmetic_operation && current.innerHTML != '-'){
+        current.innerHTML = 'Ошибка';
+    }
+    if(current.innerHTML == 'Ошибка+' || current.innerHTML == 'Ошибка/' || current.innerHTML == 'Ошибка*' || current.innerHTML == 'Ошибка^2'){
+        current.innerHTML = current.innerHTML.replace('Ошибка' + arefmetic_operation, 'Ошибка');
+    }
+}    
+function square() {
+    return current.innerHTML * current.innerHTML;
 }
