@@ -3,26 +3,23 @@ var last = document.getElementById('last');
 var arefmetic_operation = document.querySelector('.arefmetic_operation');
 var button_c = document.querySelector('.button_c');
 var i = 0;
+var number1;
+var number2;
+var numberWithArefmeticOperation;
+var result;
 
 function insert(num) {
     current.innerHTML += num;
-    if(current.innerHTML[current.innerHTML.length - 2] === '/' || current.innerHTML[current.innerHTML.length - 2] === '*' ||
-    current.innerHTML[current.innerHTML.length - 2] === '-' || current.innerHTML[current.innerHTML.length - 2] === '+'){
-        if(current.innerHTML[current.innerHTML.length - 1] === '.'){
-            current.innerHTML = 'Ошибка';
-        }
-    }
+    number2 = current.innerHTML.replace(numberWithArefmeticOperation,'');
 }  
 function error(num){
-    while(i <= 1){
-        current.innerHTML[i] += num;
-        i++;
-        if (current.innerHTML[0] == num){
-            continue;
-        }
-        else if(current.innerHTML[1] != '.'){
+    if(current.innerHTML[0] === '0'){
+        if(current.innerHTML === '0' + num){
             current.innerHTML = 'Ошибка';
         }
+    }  
+    if(current.innerHTML[0] === '.'){
+        current.innerHTML = 'Ошибка';
     }
 }
 function clear_error(num){
@@ -48,27 +45,63 @@ function back() {
 }
 
 function calc() {
-    var number = current.innerHTML;
-    if(number){
-        current.innerHTML = eval(number);
+    /*if(current.innerHTML === number1 + '^' + number2){
+        current.innerHTML = square()
+    }*/
+    if(current.innerHTML){
+        current.innerHTML = numberWithArefmeticOperation + number2 + "=" + eval(current.innerHTML);
     }
-    last.innerHTML = number + "=" + current.innerHTML;
+    /*if(current.innerHTML === number1 + '+' + number2){
+        plus();
+    }
+    if(current.innerHTML === number1 + '-' + number2){
+        min();
+    }
+        if(current.innerHTML === number1 + '*' + number2){
+        mul();
+    }
+    if(current.innerHTML === number1 + '/' + number2){
+        del();
+    }*/
+    last.innerHTML = current.innerHTML;
 }
 function arefmetic_operation1(arefmetic_operation) {
+    number1 = current.innerHTML.substring('0',current.innerHTML);
     current.innerHTML += arefmetic_operation;
+    numberWithArefmeticOperation = current.innerHTML;
+
     if(current.innerHTML[current.innerHTML.length - 2] === '+' || current.innerHTML[current.innerHTML.length - 2] === '-' ||
     current.innerHTML[current.innerHTML.length - 2] === '*' || current.innerHTML[current.innerHTML.length - 2] === '/')
     {
         current.innerHTML = current.innerHTML.replace(current.innerHTML[current.innerHTML.length - 2], arefmetic_operation);
         current.innerHTML = current.innerHTML.substring('0', current.innerHTML.length - 1);
     }
+
     if(current.innerHTML === arefmetic_operation && current.innerHTML != '-'){
         current.innerHTML = 'Ошибка';
     }
-    if(current.innerHTML == 'Ошибка+' || current.innerHTML == 'Ошибка/' || current.innerHTML == 'Ошибка*' || current.innerHTML == 'Ошибка^2'){
+
+    if(current.innerHTML == 'Ошибка+' || current.innerHTML == 'Ошибка/' || current.innerHTML == 'Ошибка*' || current.innerHTML == 'Ошибка^' ||
+    current.innerHTML == 'Ошибка.'){
         current.innerHTML = current.innerHTML.replace('Ошибка' + arefmetic_operation, 'Ошибка');
     }
 }    
-function square() {
-    return current.innerHTML * current.innerHTML;
+/*function square() {
+    return number1 + "^" + number2 + "=" + number1 ** number2;
 }
+function plus(){
+    result = Number(number1) + Number(number2);
+    current.innerHTML = number1 + "+" + number2 + "=" + result;
+}
+function min(){
+    result = Number(number1) - Number(number2);
+    current.innerHTML = number1 + "-" + number2 + "=" + result;
+}
+function mul(){
+    result = Number(number1) * Number(number2);
+    current.innerHTML = number1 + "*" + number2 + "=" + result;
+}
+function del(){
+    result = Number(number1) / Number(number2);
+    current.innerHTML = number1 + "/" + number2 + "=" + result;
+}*/

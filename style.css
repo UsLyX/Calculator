@@ -85,7 +85,6 @@ body{
     color: rgb(112, 108, 102);
     user-select: none;
     box-sizing: border-box;
-    user-select: none;
 }
 .text_container_current_operation{
     font-size: 55px;
@@ -94,5 +93,4 @@ body{
     height: 50%;
     text-align: right;
     padding-right: 50px;
-    user-select: none;
 }
